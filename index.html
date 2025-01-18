@@ -19,26 +19,34 @@
         #sidebar {
             width: 300px;
             height: auto;
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            position:absolute;
+            top: 70px;
+            left: -320px;
             background-color: rgba(255, 255, 255, 0.9);
             color: #000;
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            transition: left 0.3s;
         }
+
+        #sidebar.active {
+            left: 20px;
+        }
+
         #sidebar h3 {
             margin-top: 0;
             color: #333;
             font-size: 18px;
         }
+
         #sidebar p {
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 10px;
         }
+
         .btn {
             display: inline-block;
             width: calc(100% - 10px);
@@ -54,26 +62,48 @@
             transition: background-color 0.3s;
             font-size: 14px;
         }
+
         .btn:hover {
             background-color: #357ae8;
         }
+
         .icon {
             margin-right: 8px;
         }
+
         .btn-group {
             display: flex;
             flex-direction: column;
         }
+
         .footer {
             font-size: 12px;
             color: #555;
             text-align: center;
             margin-top: 10px;
         }
+
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1100;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-btn:hover {
+            background-color: #357ae8;
+        }
         </style>
         <title></title>
     </head>
     <body>
+        <div class="toggle-btn" onclick="toggleSidebar()">Menu</div>
         <div id="sidebar">
             <h3><i class="fas fa-map"></i> Data Pemilu Bali 2024</h3>
             <p>Jelajahi peta dan klik wilayah mana pun untuk informasi lebih lanjut.</p>
@@ -195,6 +225,10 @@
                     map.addLayer(layer);
                 }
             });
+        }
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
         }
         layer_OpenStreetMapOSM_0;
         map.addLayer(layer_OpenStreetMapOSM_0);
